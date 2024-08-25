@@ -60,7 +60,8 @@ def check_name_acceptance(new_name, suggestion_count):
         suggestion_count += 1
         if suggestion_count >= 3:
             generate_fallback_name()
-        generate_fantasy_name(new_name, suggestion_count)
+        else:
+            generate_fantasy_name(new_name, suggestion_count)
     # Move the part where user accepts into the main function?
     else:
         print(f"Congrats! Your character's new name is {new_name}. May they embark on a fantastic adventure 😁\n")
@@ -73,7 +74,7 @@ def check_name_acceptance(new_name, suggestion_count):
 def welcome():
     suggestion_count = 0
     try:
-        original_name = input("Hello! What's your male fantasy characters current name?\n")
+        original_name = input("Hello! Welcome to the Fantasy Name Generator. Here, your generic male fantasy character's anme will be replaced with a new unique name. What's your male fantasy characters current name?\n")
         if not original_name.isalpha():
             print("The name can only contain letters from the Roman alphabet.")
             return
