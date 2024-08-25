@@ -62,25 +62,9 @@ def check_name_acceptance(new_name, suggestion_count):
             generate_fallback_name()
         else:
             generate_fantasy_name(new_name, suggestion_count)
-    # Move the part where user accepts into the main function?
     else:
-        print(f"Congrats! Your character's new name is {new_name}. May they embark on a fantastic adventure 😁\n")
+        print(f"Congrats! Your character's new name is {new_name}. May they embark on a fantastic adventure 🧚\n")
         return
-
-
-""" Main function/programme """
-
-
-def welcome():
-    suggestion_count = 0
-    try:
-        original_name = input("Hello! Welcome to the Fantasy Name Generator. Here, your generic male fantasy character's anme will be replaced with a new unique name. What's your male fantasy characters current name?\n")
-        if not original_name.isalpha():
-            print("The name can only contain letters from the Roman alphabet.")
-            return
-        generate_fantasy_name(original_name, suggestion_count)
-    except Exception as e:
-        error_message = "Oops! An error occurred: " + str(e)
 
 
 def generate_fantasy_name(original_name, suggestion_count):
@@ -90,7 +74,21 @@ def generate_fantasy_name(original_name, suggestion_count):
     # function if first letter is a vowel
     else:
         names_with_vowels(original_name, suggestion_count)
-    # can the finale be inserted here instead of in the acceptance check function?
+
+
+def welcome():
+    suggestion_count = 0
+    try:
+        original_name = input("Hello! Welcome to the Fantasy Name Generator."
+                              "\nHere, your male fantasy character's generic name will be replaced with a new unique name."
+                              "\nWhat's your male fantasy characters current name?\n")
+        # put alpha check in separate function?
+        if not original_name.isalpha():
+            print("The name can only contain letters from the Roman alphabet.")
+            return
+        generate_fantasy_name(original_name, suggestion_count)
+    except Exception as e:
+        error_message = "Oops! An error occurred: " + str(e)
 
 
 if __name__ == "__main__":
