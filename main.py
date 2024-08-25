@@ -9,6 +9,7 @@ import random
 # function to replace vowel with new vowel - DONE
 # function to replace consonant with new consonant - DONE
 # suggest new name and check if user is happy
+# check suggestion count at some point
 # if user is not happy after 3 suggestions, fall back to Kevin
 
 ####### LATER
@@ -55,31 +56,34 @@ def check_name_acceptance(new_name, suggestion_count):
         print("Please reply with only 'Yes' or 'No'.")
         check_name_acceptance(new_name, suggestion_count)
     elif accept == 'No':
-        pass
-    # Move this part into the main function?
+        suggestion_count += 1
+
+    # Move the part where user accepts into the main function?
     else:
         print(f"Congrats! Your character's new name is ${new_name}. May they embark on a fantastic adventure 😁\n")
         return
 
 
 """ Main function/programme """
-
-
-def generate_fantasy_name():
-    suggestions = 0
+def welcome():
+    suggestion_count = 0
     try:
         original_name = input("Hello! What's your male fantasy characters current name?\n")
         if not original_name.isalpha():
             print("The name can only contain letters from the Roman alphabet.")
             return
-        # function if first letter is a consonant
-        if original_name[0].lower() in consonants:
-            names_with_consonants(original_name, suggestions)
-        # function if first letter is a vowel
-        else:
-            names_with_vowels(original_name, suggestions)
+        generate_fantasy_name(original_name, suggestion_count)
     except Exception as e:
         error_message = "Oops! An error occurred: " + str(e)
+def generate_fantasy_name(original_name, suggestion_count):
+        # function if first letter is a consonant
+        if original_name[0].lower() in consonants:
+            names_with_consonants(original_name, suggestion_count)
+        # function if first letter is a vowel
+        else:
+            names_with_vowels(original_name, suggestion_count)
+        # can the finale be inserted here instead of in the acceptance check function?
+
 
 
 if __name__ == "__main__":
