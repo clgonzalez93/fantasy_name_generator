@@ -32,6 +32,7 @@ def generate_random_vowel():
 
 def generate_fallback_name():
     print("Your character's name will be Kevin.")
+    return
 
 
 def names_with_consonants(original_name, suggestions):
@@ -51,20 +52,24 @@ def names_with_vowels(original_name, suggestions):
 
 
 def check_name_acceptance(new_name, suggestion_count):
-    accept = input(f"Your character's new name is ${new_name}. Do you like it? Reply with 'Yes' or 'No'\n")
-    if accept != 'Yes' or 'No':
+    accept = input(f"Your character's new name is {new_name}. Do you like it? Reply with 'Yes' or 'No'\n")
+    if accept != "Yes" and accept != "No":
         print("Please reply with only 'Yes' or 'No'.")
         check_name_acceptance(new_name, suggestion_count)
     elif accept == 'No':
         suggestion_count += 1
-
+        if suggestion_count >= 3:
+            generate_fallback_name()
+        generate_fantasy_name(new_name, suggestion_count)
     # Move the part where user accepts into the main function?
     else:
-        print(f"Congrats! Your character's new name is ${new_name}. May they embark on a fantastic adventure 😁\n")
+        print(f"Congrats! Your character's new name is {new_name}. May they embark on a fantastic adventure 😁\n")
         return
 
 
 """ Main function/programme """
+
+
 def welcome():
     suggestion_count = 0
     try:
@@ -75,16 +80,17 @@ def welcome():
         generate_fantasy_name(original_name, suggestion_count)
     except Exception as e:
         error_message = "Oops! An error occurred: " + str(e)
-def generate_fantasy_name(original_name, suggestion_count):
-        # function if first letter is a consonant
-        if original_name[0].lower() in consonants:
-            names_with_consonants(original_name, suggestion_count)
-        # function if first letter is a vowel
-        else:
-            names_with_vowels(original_name, suggestion_count)
-        # can the finale be inserted here instead of in the acceptance check function?
 
+
+def generate_fantasy_name(original_name, suggestion_count):
+    # function if first letter is a consonant
+    if original_name[0].lower() in consonants:
+        names_with_consonants(original_name, suggestion_count)
+    # function if first letter is a vowel
+    else:
+        names_with_vowels(original_name, suggestion_count)
+    # can the finale be inserted here instead of in the acceptance check function?
 
 
 if __name__ == "__main__":
-    generate_fantasy_name()
+    welcome()
