@@ -5,12 +5,12 @@ import random
 # check input has only characters - DONE
 # make input lowercase - DONE
 # check if name begins with consonant or vowel - DONE
-# let user get 3 new name suggestions
+# let user get 3 new name suggestions - DONE
 # function to replace vowel with new vowel - DONE
 # function to replace consonant with new consonant - DONE
-# suggest new name and check if user is happy
-# check suggestion count at some point
-# if user is not happy after 3 suggestions, fall back to Kevin
+# suggest new name and check if user is happy - DONE
+# check suggestion count at some point - DONE
+# if user is not happy after 3 suggestions, generate fallback - DONE
 
 ####### LATER
 # convert user instance/attempts to object
