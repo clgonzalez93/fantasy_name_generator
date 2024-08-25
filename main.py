@@ -10,7 +10,13 @@ import random
 # function to replace consonant with new consonant - DONE
 # suggest new name and check if user is happy
 # if user is not happy after 3 suggestions, fall back to Kevin
-# Nice to have: convert user instance/attempts to object
+
+####### LATER
+# convert user instance/attempts to object
+# integrate with flask
+# database? if so, what could it be?
+# an interesting end? Other than just giving a name
+
 consonants = 'bcdfghjklmnpqrstvwxyz'
 vowels = 'aeiou'
 
