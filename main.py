@@ -10,6 +10,7 @@ import random
 # function to replace consonant with new consonant - DONE
 # suggest new name and check if user is happy
 # if user is not happy after 3 suggestions, fall back to Kevin
+# Nice to have: convert user instance/attempts to object
 consonants = 'bcdfghjklmnpqrstvwxyz'
 vowels = 'aeiou'
 
@@ -26,20 +27,33 @@ def generate_fallback_name():
     print("Your character's name will be Kevin.")
 
 
-def names_with_consonants(original_name):
+def names_with_consonants(original_name, suggestions):
     new_consonant = generate_random_consonant()
     while new_consonant == original_name[0].lower():
         new_consonant = generate_random_consonant()
     new_name = new_consonant.upper() + original_name[1:]
-    return new_name
+    return check_name_acceptance(new_name, suggestions)
 
 
-def names_with_vowels(original_name):
+def names_with_vowels(original_name, suggestions):
     new_vowel = generate_random_vowel()
     while new_vowel == original_name[0].lower():
         new_vowel = generate_random_vowel()
     new_name = new_vowel.upper() + original_name[1:]
-    return new_name
+    return check_name_acceptance(new_name, suggestions)
+
+
+def check_name_acceptance(new_name, suggestion_count):
+    accept = input(f"Your character's new name is ${new_name}. Do you like it? Reply with 'Yes' or 'No'\n")
+    if accept != 'Yes' or 'No':
+        print("Please reply with only 'Yes' or 'No'.")
+        check_name_acceptance(new_name, suggestion_count)
+    elif accept == 'No':
+        pass
+    # Move this part into the main function?
+    else:
+        print(f"Congrats! Your character's new name is ${new_name}. May they embark on a fantastic adventure 😁\n")
+        return
 
 
 """ Main function/programme """
@@ -54,19 +68,12 @@ def generate_fantasy_name():
             return
         # function if first letter is a consonant
         if original_name[0].lower() in consonants:
-            names_with_consonants(original_name)
+            names_with_consonants(original_name, suggestions)
         # function if first letter is a vowel
         else:
-            names_with_vowels(original_name)
+            names_with_vowels(original_name, suggestions)
     except Exception as e:
         error_message = "Oops! An error occurred: " + str(e)
-
-
-def check_name_acceptance(new_name, suggestion_count):
-    accept = input(f"Your characters new name is ${new_name}. Do you like it? Reply with 'Yes' or 'No'\n")
-    if accept != 'Yes' or 'No':
-        print("Please reply with only 'Yes' or 'No'.")
-
 
 
 if __name__ == "__main__":
