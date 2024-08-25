@@ -2,12 +2,12 @@ import random
 
 """ Fantasy name generator"""
 # take name input - DONE
-# check input has only characters
-# make input lowercase
-# check if name begins with consonant or vowel
+# check input has only characters - DONE
+# make input lowercase - DONE
+# check if name begins with consonant or vowel - DONE
 # let user get 3 new name suggestions
-# function to replace vowel with new vowel
-# function to replace consonant with new consonant
+# function to replace vowel with new vowel - DONE
+# function to replace consonant with new consonant - DONE
 # suggest new name and check if user is happy
 # if user is not happy after 3 suggestions, fall back to Kevin
 consonants = 'bcdfghjklmnpqrstvwxyz'
@@ -43,6 +43,8 @@ def names_with_vowels(original_name):
 
 
 """ Main function/programme """
+
+
 def generate_fantasy_name():
     suggestions = 0
     try:
@@ -60,8 +62,11 @@ def generate_fantasy_name():
         error_message = "Oops! An error occurred: " + str(e)
 
 
-def check_name_acceptance(suggestion_count):
-    pass
+def check_name_acceptance(new_name, suggestion_count):
+    accept = input(f"Your characters new name is ${new_name}. Do you like it? Reply with 'Yes' or 'No'\n")
+    if accept != 'Yes' or 'No':
+        print("Please reply with only 'Yes' or 'No'.")
+
 
 
 if __name__ == "__main__":
