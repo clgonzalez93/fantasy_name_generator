@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy Name Generator</title>
+</head>
+<body>
+    <h1>Fantasy Name Generator</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="original_name">Enter your character's name:</label>
+            <input type="text" name="original_name" id="original_name" required>
+            <button type="submit">Generate Name</button>
+        </form>
+
+        {% if result %}
+            <h2>Result: {{ result }}</h2>
+        {% endif %}
+</body>
+</html>
