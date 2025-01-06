@@ -5,7 +5,6 @@ import random
 
 ####### LATER
 # convert user instance/attempts to object
-# integrate with flask
 # database? if so, what could it be?
 # an interesting end? Other than just giving a name
 
