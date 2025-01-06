@@ -25,7 +25,7 @@
     <h2>Result: {{ result }}</h2>
 
     {% if show_buttons %}
-        <!-- Only show accept and reject buttons if there's no error and the name is valid -->
+        <!-- Only show accept and reject buttons if the name is valid -->
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="original_name" value="{{ original_name }}">
