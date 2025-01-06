@@ -12,6 +12,13 @@
             <input type="text" name="original_name" id="original_name" required>
             <button type="submit">Generate Name</button>
         </form>
+    <form method="POST">
+            {% csrf_token %}
+            <label for="new_name_approval">Are you happy with your characters name?</label>
+            <input type="text" name="new_name_approval" id="new_name_approval" required>
+            <button type="submit">Yes</button>
+            <button type="submit">No</button>
+        </form>
 
         {% if result %}
             <h2>Result: {{ result }}</h2>
