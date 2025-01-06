@@ -5,23 +5,35 @@
     <title>Fantasy Name Generator</title>
 </head>
 <body>
-    <h1>Fantasy Name Generator</h1>
+       <h1>Fantasy Name Generator</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Input for entering the original name -->
+        <label for="original_name">Enter your character's name:</label>
+        <input type="text" name="original_name" id="original_name" value="{{ original_name|default:'' }}" required>
+
+        <!-- Hidden field to keep track of suggestion count -->
+        <input type="hidden" name="suggestion_count" value="{{ suggestion_count|default:0 }}">
+
+        <!-- Button to generate a name -->
+        <button type="submit" name="generate">Generate Name</button>
+    </form>
+
+    {% if result %}
+    <h2>Result: {{ result }}</h2>
+
+    {% if show_buttons %}
+        <!-- Only show accept and reject buttons if there's no error and the name is valid -->
         <form method="POST">
             {% csrf_token %}
-            <label for="original_name">Enter your character's name:</label>
-            <input type="text" name="original_name" id="original_name" required>
-            <button type="submit">Generate Name</button>
+            <input type="hidden" name="original_name" value="{{ original_name }}">
+            <input type="hidden" name="suggestion_count" value="{{ suggestion_count }}">
+            <button type="submit" name="accept">Accept</button>
+            <button type="submit" name="reject">Reject</button>
         </form>
-    <form method="POST">
-            {% csrf_token %}
-            <label for="new_name_approval">Are you happy with your characters name?</label>
-            <input type="text" name="new_name_approval" id="new_name_approval" required>
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-
-        {% if result %}
-            <h2>Result: {{ result }}</h2>
-        {% endif %}
+    {% endif %}
+{% endif %}
 </body>
 </html>
