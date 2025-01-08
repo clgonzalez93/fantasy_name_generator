@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/styles.css' %}">
     <meta charset="UTF-8">
     <title>Fantasy Name Generator</title>
 </head>
 <body>
        <h1>Fantasy Name Generator</h1>
+    <p>Xaden, Jaden, Caden… starting to feel like you've heard them all? Fear not.
+        This fantasy name generator offers bold, creative, one-of-a-kind (probably)
+        suggestions to help your characters stand out — because sometimes,
+        a name just needs a little something extra.<br>
+        And if inspiration runs dry, there's always Kevin.</p><br>
 
     <form method="POST">
         {% csrf_token %}
 
         <!-- Input for entering the original name -->
-        <label for="original_name">Enter your character's name:</label>
+        <label for="original_name">Enter your character's name:</label><br>
         <input type="text" name="original_name" id="original_name" value="{{ original_name|default:'' }}" required>
+
 
         <!-- Hidden field to keep track of suggestion count -->
         <input type="hidden" name="suggestion_count" value="{{ suggestion_count|default:0 }}">
